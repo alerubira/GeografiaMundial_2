@@ -1,0 +1,67 @@
+*{
+    background-color: aquamarine;
+}
+h1,h3{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.centrado{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Estilos para el contenedor principal */
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 50vh;
+    margin: 20px;
+}
+
+/* Cambiar flex-direction a row para los divs arriba */
+.arriba {
+    width: 200px;
+    height: 100px;
+    background-color: lightblue;
+    margin: 5px;
+    border-radius: 10px;
+    border: 2px solid black;
+    flex: 1; /* Ocupar espacio disponible igualmente */
+}
+
+/* Cambiar flex-direction a row para los divs abajo */
+.abajo {
+    width: 200px;
+    height: 100px;
+    background-color: lightgreen;
+    margin: 5px;
+    border-radius: 10px;
+    border: 2px solid black;
+    flex: 1; /* Ocupar espacio disponible igualmente */
+}
+
+/* Aplicar flexbox para los divs arriba y abajo */
+.grupo-arriba {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+}
+
+.grupo-abajo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+}
+
+
+
+
+
+
+
