@@ -22,6 +22,7 @@ h1,h3{
 
 /* Cambiar flex-direction a row para los divs arriba */
 .arriba {
+    
     width: 200px;
     height: 100px;
     background-color: lightblue;
@@ -30,9 +31,12 @@ h1,h3{
     border: 2px solid black;
     flex: 1; /* Ocupar espacio disponible igualmente */
 }
-
+.arriba:hover,.abajo:hover{
+    border: 5px solid yellow;
+}
 /* Cambiar flex-direction a row para los divs abajo */
 .abajo {
+    transition: background-color 0.3s; 
     width: 200px;
     height: 100px;
     background-color: lightgreen;
