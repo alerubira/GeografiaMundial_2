@@ -18,6 +18,9 @@ let bandera;
 let aliasObligatorio=document.getElementById("aliasObligatorio");
 let cantidad;
 let paisesJugar;
+let correctas;
+let cont;
+let cantI;
 const aleatorio=(al)=>{
   return Math.floor(Math.random() * al) ;
 }
@@ -64,6 +67,14 @@ const vaciar=()=>{
   adivinaBandera.innerHTML="";
   adivinaCapital.innerHTML="";
   aliasObligatorio.innerHTML="";
+   div1.removeAttribute("style");
+   div1.classList.add("arriba");
+   div2.removeAttribute("style");
+   div2.classList.add("arriba");
+   div3.removeAttribute("style");
+   div3.classList.add("abajo");
+   div4.removeAttribute("style");
+   div4.classList.add("abajo");
 }
 const jugar=(c,cI)=>{
   var d =aleatorio(4);
@@ -91,9 +102,49 @@ const jugar=(c,cI)=>{
   }else{
     eligeCapital(c,c1,c2,c3,c4);
   }
-
-console.log(d,c1,c2,c3,c4);
 }
+  function marcar(co){
+    
+     switch (co) {
+    case 1:
+          div1.style.border = "6px solid green";
+          div2.style.border = "6px solid red";
+          div3.style.border = "6px solid red";
+          div4.style.border = "6px solid red";
+          
+      break;
+    case 2:
+           div1.style.border = "6px solid red";
+           div2.style.border = "6px solid green";
+           div3.style.border = "6px solid red";
+           div4.style.border = "6px solid red";
+           
+      break;
+    case 3:
+          div1.style.border = "6px solid red";
+          div2.style.border = "6px solid red";
+          div3.style.border = "6px solid green";
+          div4.style.border = "6px solid red";
+          
+      break;
+    case 4:
+          div1.style.border = "6px solid red";
+          div2.style.border = "6px solid red";
+          div3.style.border = "6px solid red";
+          div4.style.border = "6px solid green";
+          
+      break;
+  }  
+  setTimeout(empezar, 3000);
+}
+ 
+
+//console.log(d,c1,c2,c3,c4);
+//console.log(retorno)
+
+//setTimeout(empezar, 3000);
+//return retorno;
+
  
 fetch("https://restcountries.com/v3.1/all")
   .then((res) => res.json())
@@ -108,17 +159,7 @@ fetch("https://restcountries.com/v3.1/all")
        cantidad=paises.length-1;
         
     });
-    //console.log(paises[0]);
     
-    //const posicion=Math.floor(Math.random() * cantidad) ;
-    //adivinaBandera.textContent="Adivina Bandera";
-    //adivinaCapital.textContent="Adivina Capital";
-    //nombrePais.textContent=paises[posicion].nombre;
-    //nombreCapital.textContent=paises[posicion].capital[0];
-    //ruta=paises[posicion].bandera;
-    //llenarDiv(div1,ruta);
-    //llenarDivC(div1,paises[posicion].capital[0]);
-    //console.log(ruta);
     });
     
     
@@ -130,56 +171,70 @@ fetch("https://restcountries.com/v3.1/all")
             aliasObligatorio.innerHTML="el alias debe se obligatorio";
            }else{
             paisesJugar=llenarArray(cantidad,43);//llena un arreglo con 40 numeros para buscar los paises para jugar 
+            cont=0;//para seleccionar paises para acertar
+            cantI=10;//para seleccionar paises para rellenar
+            correctas=0;
             empezar();
-           }
-          
+           
+          }
+           
           });
  
  
  //
  function empezar(){
-  var cont=0;//para seleccionar paises para acertar
-  var cantI=10;//para seleccionar paises para rellenar
-  vaciar();
-  do{
-    var corr= jugar(cont,cantI);
-     clic(corr);
+
+    vaciar();
+    var corr= jugar(cont,cantI);//me devuelve en que div coloco la respuesta correcta
+     
      cont++;
      cantI=cantI+3;
-     //vaciar();
-  }while(cont>10);
+     console.log(cont);
+    clic(corr);
 
  }
   function clic(co){
+    var a;
 div1.addEventListener('click', function() {
+  
   if(co==1){
-alert('acertaste');
+     correctas++;
+     marcar(co); 
   }else{
-    alert('no acertaste');
+    marcar(co);
   }
     
 });
 div2.addEventListener('click', function() {
   if(co==2){
-alert('acertaste');
+     correctas++;
+     marcar(co);
+  }else{
+    marcar(co);
   }
     
 });
 div3.addEventListener('click', function() {
   if(co==3){
-alert('acertaste');
+     correctas++;
+     marcar(co); 
+  }else{
+    marcar(co);
   }
-    
+   
 });
 div4.addEventListener('click', function() {
   if(co==4){
-alert('acertaste');
+     correctas++; 
+     marcar(co);
+  }else{
+    marcar(co);
   }
-    
+   
 });
+     
+     
  }
-
-
 
 const eligeCapital=(c,c1,c2,c3,c4,)=>{
   adivinaCapital.textContent="Adivina Capital";
@@ -192,4 +247,6 @@ const eligeBandera=(c,c1,c2,c3,c4)=>{
   nombrePais.textContent=paises[paisesJugar[c]].nombre;
   llenarDivs("adivi",c1,c2,c3,c4,c)
 }
+
+
 
